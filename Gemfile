@@ -12,6 +12,9 @@ gem 'sass-rails', '~> 4.0.2'
 # Use HAML markup. HTML tags sucks.
 gem 'haml-rails', '~> 0.5.3'
 
+# Foundation for responsive design.
+gem 'foundation-rails', '~> 5.2.2.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
