@@ -42,7 +42,7 @@
     .large-6.columns
       %label
         What's your friend's name?
-        %input{:type => "text"}/
+        %input{:type => "text", class: 'typeahead'}/
   .row.other-text-field.hide
     .large-6.columns
       %label
@@ -84,4 +84,45 @@
           $('.friends-name').show();
         }
       });
+    });
+
+    var substringMatcher = function(strs) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+        matches = [];
+        substrRegex = new RegExp(q, 'i');
+
+        $.each(strs, function(i, str) {
+          if (substrRegex.test(str)) {
+            matches.push({ value: str });
+          }
+        });
+
+        cb(matches);
+      };
+    };
+
+    var names = [
+      'Jason Ong',
+      'Brett Cooley',
+      'Vance Roush',
+      'Kim Roush',
+      'Adam Smallcrombe',
+      'Keira Smallcrombe',
+      'Jon Ochoa',
+      'Angeline Tan',
+      'Andrew Thomas',
+      'Amber Thomas'
+    ]
+
+    // instantiate the typeahead UI
+    $('.friends-name .typeahead').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      name: 'names',
+      displayKey: 'value',
+      source: substringMatcher(names)
     });
