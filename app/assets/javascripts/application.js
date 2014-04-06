@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require twitter/typeahead.min
+//= require mailcheck.min
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
