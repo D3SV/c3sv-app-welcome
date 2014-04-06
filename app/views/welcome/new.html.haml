@@ -30,14 +30,14 @@
       %label
         How did you hear about us?
         %select
-          %option{:value => "husker", 'data-id' => 'friend'} Friend
-          %option{:value => "husker"} Yelp
-          %option{:value => "husker"} Facebook
-          %option{:value => "husker"} Billboard
-          %option{:value => "husker"} Mailer
-          %option{:value => "husker"} Google Search
-          %option{:value => "husker"} Google Ads
-          %option{:value => "husker", 'data-id' => 'other'} Other:
+          %option{:value => "friend", 'data-id' => 'friend'} Friend
+          %option{:value => "yelp"} Yelp
+          %option{:value => "facebook"} Facebook
+          %option{:value => "billboard"} Billboard
+          %option{:value => "mailer"} Mailer
+          %option{:value => "google_search"} Google Search
+          %option{:value => "google_ads"} Google Ads
+          %option{:value => "other", 'data-id' => 'other'} Other:
   .row.friends-name
     .large-6.columns
       %label
@@ -70,6 +70,9 @@
 - content_for :foot do
   :javascript
     $(function() {
+      // Force default option else previous selection might be cached.
+      $('.referral-types select').val('friend').change();
+
       $('.referral-types select').change(function() {
         var selected = $(this).children(':selected').data('id');
 
