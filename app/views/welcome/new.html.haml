@@ -25,19 +25,29 @@
         Phone
         %input{:type => "text"}/
 
-  .row
-    .large-12.columns
+  .row.referral-types
+    .large-6.columns
       %label
         How did you hear about us?
         %select
-          %option{:value => "husker"} Friend
+          %option{:value => "husker", 'data-id' => 'friend'} Friend
           %option{:value => "husker"} Yelp
           %option{:value => "husker"} Facebook
           %option{:value => "husker"} Billboard
           %option{:value => "husker"} Mailer
           %option{:value => "husker"} Google Search
           %option{:value => "husker"} Google Ads
-          %option{:value => "husker"} Other:
+          %option{:value => "husker", 'data-id' => 'other'} Other:
+  .row.friends-name
+    .large-6.columns
+      %label
+        Friend's name?
+        %input{:type => "text"}/
+  .row.other-text-field.hide
+    .large-6.columns
+      %label
+        Describe?
+        %input{:type => "text"}/
 
   .row
     .large-12.columns
@@ -56,3 +66,22 @@
   .row
     .large-12.columns
       %input{:type => "submit", value: 'Get Connected', class: 'button'}/
+
+- content_for :foot do
+  :javascript
+    $(function() {
+      $('.referral-types select').change(function() {
+        var selected = $(this).children(':selected').data('id');
+
+        if (selected != 'friend' ) {
+          $('.friends-name').hide();
+
+          if (selected == 'other') {
+            $('.other-text-field').show();
+          }
+        } else {
+          $('.other-text-field').hide();
+          $('.friends-name').show();
+        }
+      });
+    });
