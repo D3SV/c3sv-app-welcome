@@ -33,7 +33,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-# Typeahead seach.
+# Typeahead search.
 gem 'twitter-typeahead-rails', '~> 0.10.2'
 
 group :doc do
