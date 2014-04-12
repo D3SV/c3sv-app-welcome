@@ -1,3 +1,5 @@
 C3svAppWelcome::Application.routes.draw do
-  root 'welcome#new'
+  root 'users#new'
+
+  resources :users, only: [:new, :create]
 end

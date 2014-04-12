@@ -10,5 +10,6 @@ describe User do
     it { should respond_to :referrer_name }
     it { should respond_to :reason_for_visit }
     it { should respond_to :allow_for_social_connect }
+    it { should respond_to :other }
   end
 end
