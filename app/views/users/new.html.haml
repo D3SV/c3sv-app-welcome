@@ -51,6 +51,9 @@
 - content_for :foot do
   :javascript
     $(function() {
+      // Hide alerts after 5 seconds
+      $(".alert-box").delay(5000).fadeOut();
+
       // Force default option else previous selection might be cached.
       $('.referral-types select').val('friend').change();
 

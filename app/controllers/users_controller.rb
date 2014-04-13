@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     @new_user = NewUser.new(params[:user])
 
     if @new_user.save
+      flash[:notice] = {
+        message: 'Thanks for connecting!',
+        type: :success
+      }
+
       redirect_to new_user_path
     else
       render :new
