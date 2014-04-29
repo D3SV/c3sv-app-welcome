@@ -5,71 +5,55 @@
     %h4
       Please leave your details so we can get connected.
 
-%form
+= form_for @user do |form|
   .row
     .large-6.columns
-      %label
-        First Name
-        %input{:type => "text"}/
+      = form.label :first_name
+      = form.text_field :first_name
     .large-6.columns
-      %label
-        Last Name
-        %input{:type => "text"}/
+      = form.label :last_name
+      = form.text_field :last_name
   .row
     .large-6.columns
-      %label
-        Email
-        %input{:type => "email", class: 'email'}/
+      = form.label :email
+      = form.text_field :email
     .large-6.columns
-      %label
-        Phone
-        %input{:type => "text"}/
+      = form.label :phone
+      = form.text_field :phone
 
   .row.referral-types
     .large-4.columns
-      %label
-        How did you hear about us?
-        %select
-          %option{:value => "friend", 'data-id' => 'friend'} Friend
-          %option{:value => "yelp"} Yelp
-          %option{:value => "facebook"} Facebook
-          %option{:value => "billboard"} Billboard
-          %option{:value => "mailer"} Mailer
-          %option{:value => "google_search"} Google Search
-          %option{:value => "google_ads"} Google Ads
-          %option{:value => "other", 'data-id' => 'other'} Other:
+      = form.label :referral_source, 'How did you hear about us?'
+      = form.select :referral_source, options_for_select(@referral_sources)
   .row.friends-name
     .large-6.columns
-      %label
-        What's your friend's name?
-      %input{:type => "text", class: 'typeahead'}/
+      = form.label :referrer_name, "What's your friend's name?"
+      = form.text_field :referrer_name, class: 'typeahead'
   .row.other-text-field.hide
     .large-6.columns
-      %label
-        Describe how you heard about us?
-        %input{:type => "text"}/
+      = form.label :other, 'Describe how you heard about us?'
+      = form.text_field :other
 
   .row
     .large-6.columns
-      %label
-        How can we help?
-        %select
-          %option{:value => "husker"} Looking for a home church, please plug me in.
-          %option{:value => "husker"} Still church shopping, but keep me informed.
-          %option{:value => "husker"} Just visiting friends & family, thanks!
+      = form.label :reason_for_visit, 'How can we help?'
+      = form.select :reason_for_visit, options_for_select(@reasons_for_visit)
 
   .row
     .large-6.columns
-      %input#checkbox1{:type => "checkbox", checked: 'checked'}/
-      %label Yes, connect with me over social media.
+      = form.check_box :allow_for_social_connect, checked: 'checked'
+      = form.label :allow_for_social_connect
 
   .row
     .large-12.columns
-      %input{:type => "submit", value: 'Get Connected', class: 'button'}/
+      = form.submit 'Get Connected', class: 'button'
 
 - content_for :foot do
   :javascript
     $(function() {
+      // Hide alerts after 5 seconds
+      $(".alert-box").delay(5000).fadeOut();
+
       // Force default option else previous selection might be cached.
       $('.referral-types select').val('friend').change();
 
